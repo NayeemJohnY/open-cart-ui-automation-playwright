@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+  <configuration>
+
+    <!-- report theme -->
+    <!-- STANDARD, DARK -->
+    <theme>STANDARD</theme>
+
+    <!-- document encoding -->
+    <!-- defaults to UTF-8 -->
+    <encoding>UTF-8</encoding>
+
+    <!-- protocol for script and stylesheets -->
+    <!-- defaults to https -->
+    <!-- HTTP, HTTPS -->
+    <protocol>HTTPS</protocol>
+
+    <!-- offline report -->
+    <timelineEnabled>true</timelineEnabled>
+
+    <!-- offline report -->
+    <enableOfflineMode>false</enableOfflineMode>
+
+    <!-- use thumbnails for base64 images -->
+    <!-- this may slowdown viewing tests -->
+    <thumbnailForBase64>false</thumbnailForBase64>
+
+    <!-- title of the document -->
+    <documentTitle>Open Cart UI Test Execution Report</documentTitle>
+
+    <!-- report name - displayed at top-nav -->
+    <reportName>Open Cart UI Test Execution Report</reportName>
+
+    <!-- timestamp format -->
+    <timeStampFormat>yyyy-MMM-dd HH:mm:ss</timeStampFormat>
+
+    <!-- custom javascript -->
+    <scripts>
+      <![CDATA[
+        $(document).ready(function() {
+            
+        });
+      ]]>
+    </scripts>
+
+    <!-- custom styles -->
+    <styles>
+      <![CDATA[
+
+      ]]>
+    </styles>
+
+  </configuration>
+</extentreports>

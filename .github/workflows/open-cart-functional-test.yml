@@ -1,0 +1,86 @@
+name: Functional Test - Open cart UI
+
+on:
+  workflow_dispatch:
+    inputs:
+      os:
+        description: Select the OS
+        type: choice
+        required: false
+        options:
+          - "ubuntu-latest"
+          - "windows-latest"
+          - "macos-latest"
+        default: "ubuntu-latest"
+
+      browser:
+        description: "Browser"
+        type: choice
+        options:
+          - "chrome"
+          - "chromium"
+          - "edge"
+          - "firefox"
+          - "safari"
+        default: "chrome"
+        required: false
+
+      selenium-grid-url:
+        description: "Selenium Grid URL (Required for headed mode execution, leave blank for headless mode)"
+        type: string
+        required: false
+
+      enable-video-recording:
+        description: "Enable Video Recording"
+        type: choice
+        options:
+          - "true"
+          - "false"
+        default: "false"
+        required: false
+
+      enable-tracing:
+        description: "Enable Tracing"
+        type: choice
+        options:
+          - "true"
+          - "false"
+        default: "false"
+        required: false
+
+      tests:
+        description: "Mention specific test class or method to run (i.e., TestClass1, TestClass1#testMethod1)"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  functional-test-execution:
+    runs-on: ${{github.event.inputs.os || 'ubuntu-latest'}}
+
+    steps:
+      - name: Checkout the Repository to Runner
+        uses: actions/checkout@v3
+
+      - name: Action - Run Maven Test
+        uses: ./.github/java-maven-testng-test-action
+        with:
+          browser: ${{ github.event.inputs.browser }}
+          headless: ${{ ! github.events.inputs.selenium-grid-url }}
+          selenium-grid-url: ${{ github.events.inputs.selenium-grid-url}}
+          enable-tracing: ${{ github.event.inputs.enable-tracing }}
+          enable-video-recording: ${{ github.event.inputs.enable-video-recording }}
+          tests: ${{ github.event.inputs.tests }}
+
+      - name: Action - Publish Test Report to Github Pages
+        uses: ./.github/publish-github-page-action
+        id: report
+        if: always()
+
+    environment:
+      name: github-pages
+      url: ${{ steps.report.outputs.page_url }}

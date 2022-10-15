@@ -1,0 +1,29 @@
+name: Publish Test Report to Github Pages
+description: "Publish the Test Report to the Github Pages"
+
+outputs:
+  page_url:
+    description: "Test Report Github page"
+    value: ${{ steps.publish.outputs.page_url }}
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Prepare Test Report for Github Pages
+      shell: bash
+      run: |
+        mkdir github-page
+        scp test-results/TestExecutionReport.html github-page/index.html
+
+    - name: Setup Github Pages
+      uses: actions/configure-pages@v2
+
+    - name: Upload Test execution Extent Report HTML to Github Pages
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: "github-page/"
+
+    - name: Publish HTML Report to Github Pages
+      id: publish
+      uses: actions/deploy-pages@v1

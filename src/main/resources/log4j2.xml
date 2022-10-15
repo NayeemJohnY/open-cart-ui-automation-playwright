@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Properties>
+		<Property name="filename">test-results/logs/opencart-ui-automation.log</Property>
+		<Property name="pattern">%style{[%date{yyyy-MMM-dd HH:mm:ss.SSS zzz}]}{yellow} %style{[Thread ID: %tid]}{white} %style{[%5class{1}.%method]}{bright_blue} %highlight{[%level]} %msg%n%throwable</Property>
+	</Properties>
+	<ThresholdFilter level="DEBUG" />
+	<Appenders>
+		<Console name="STDOUT">
+			<PatternLayout disableAnsi="false">
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+		</Console>
+		<File name="File" fileName="${filename}" append="false">
+			<PatternLayout disableAnsi="false">
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>

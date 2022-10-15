@@ -1,0 +1,44 @@
+name: Run Java Maven TestNG Test
+description: "Action to Run Maven Test"
+inputs:
+  browser:
+    description: "Browser"
+    default: "chrome"
+  headless:
+    description: "Headless mode"
+    default: "true"
+  enable-video-recording:
+    description: "Enable Video Recording"
+    default: "false"
+  enable-tracing:
+    description: "Enable Tracing"
+    default: "false"
+  tests:
+    description: "Mention specific test class or method to run (i.e., TestClass1, TestClass1#testMethod1)"
+  selenium-grid-url:
+   description: "Selenium Grid Nde URL"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: "17"
+        distribution: "temurin"
+        cache: maven
+
+    - name: Download playwright dependencies
+      shell: bash
+      run : mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
+
+    - name: Run Test with Maven
+      shell: bash
+      run: SELENIUM_REMOTE_URL=${{inputs.selenium-grid-url}} mvn test --file pom.xml -Dbrowser=${{inputs.browser}} -Dheadless=${{inputs.headless}} -Denable-video-recording=${{inputs.enable-video-recording}} -Denable-tracing=${{inputs.enable-video-recording}} -Dtest=${{inputs.tests}}
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: test-results
+        path: test-results/

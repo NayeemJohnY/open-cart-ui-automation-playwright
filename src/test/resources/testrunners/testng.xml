@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Open Cart Test Regression PW Suite" thread-count="3" parallel="tests" verbose="4">
+	<test name="Open Cart - Login Validation Test">
+		<classes>
+			<class name="tests.TS_01_VerifyOpenCartLoginTests" />
+		</classes>
+	</test>
+	<test name="Open Cart - Add Product to Cart Validation Test">
+		<classes>
+			<class name="tests.TS_02_VerifyAddProductToCartTests" />
+		</classes>
+	</test>
+	<test name="Open Cart - Checkout Cart Validation Test">
+		<classes>
+			<class name="tests.TS_03_VerifyCheckoutCartTests" />
+		</classes>
+	</test>
+</suite>
