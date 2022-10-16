@@ -7,10 +7,10 @@ inputs:
   headless:
     description: "Headless mode"
     default: "true"
-  enable-video-recording:
+  enableRecordVideo:
     description: "Enable Video Recording"
     default: "false"
-  enable-tracing:
+  enableTracing:
     description: "Enable Tracing"
     default: "false"
   tests:
@@ -28,16 +28,17 @@ runs:
         distribution: "temurin"
         cache: maven
 
+    # This step is required to avoid failure of scripts before the browser binaries installed
     - name: Download playwright dependencies
       shell: bash
       run : mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
 
     - name: Run Test with Maven
       shell: bash
-      run: SELENIUM_REMOTE_URL=${{inputs.selenium-grid-url}} mvn test --file pom.xml -Dbrowser=${{inputs.browser}} -Dheadless=${{inputs.headless}} -Denable-video-recording=${{inputs.enable-video-recording}} -Denable-tracing=${{inputs.enable-video-recording}} -Dtest=${{inputs.tests}}
+      run: SELENIUM_REMOTE_URL=${{inputs.selenium-grid-url}} mvn test --file pom.xml -Dbrowser=${{inputs.browser}} -Dheadless=${{inputs.headless}} -DenableRecordVideo=${{inputs.enableRecordVideo}} -DenableTracing=${{inputs.enableRecordVideo}} -Dtest=${{inputs.tests}}
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: test-results

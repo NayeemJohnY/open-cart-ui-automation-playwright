@@ -27,17 +27,17 @@ public class TestProperties {
     /**
      * Utility method to get the property value after trim
      * 
-     * @param key  - {@link String} - key of the property
+     * @param key - {@link String} - key of the property
      * @return String - Returns value {@link String} of the property
      */
     public String getProperty(String key) {
-        return prop.getProperty(key).trim();
+        return prop.getProperty(key) != null ? prop.getProperty(key).trim() : null;
     }
 
-    
-    /** 
+    /**
      * Method to set the property with the value
-     * @param key - {@link String} - key of the property
+     * 
+     * @param key   - {@link String} - key of the property
      * @param value - {@link String} - value of the property
      */
     public void setProperty(String key, String value) {

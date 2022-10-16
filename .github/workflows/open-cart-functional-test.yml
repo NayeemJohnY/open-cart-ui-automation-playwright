@@ -30,7 +30,7 @@ on:
         type: string
         required: false
 
-      enable-video-recording:
+      enableRecordVideo:
         description: "Enable Video Recording"
         type: choice
         options:
@@ -39,7 +39,7 @@ on:
         default: "false"
         required: false
 
-      enable-tracing:
+      enableTracing:
         description: "Enable Tracing"
         type: choice
         options:
@@ -60,7 +60,7 @@ permissions:
 
 jobs:
   functional-test-execution:
-    runs-on: ${{github.event.inputs.os || 'ubuntu-latest'}}
+    runs-on: ${{ github.event.inputs.os }}
 
     steps:
       - name: Checkout the Repository to Runner
@@ -72,8 +72,8 @@ jobs:
           browser: ${{ github.event.inputs.browser }}
           headless: ${{ ! github.events.inputs.selenium-grid-url }}
           selenium-grid-url: ${{ github.events.inputs.selenium-grid-url}}
-          enable-tracing: ${{ github.event.inputs.enable-tracing }}
-          enable-video-recording: ${{ github.event.inputs.enable-video-recording }}
+          enableTracing: ${{ github.event.inputs.enableTracing }}
+          enableRecordVideo: ${{ github.event.inputs.enableRecordVideo }}
           tests: ${{ github.event.inputs.tests }}
 
       - name: Action - Publish Test Report to Github Pages

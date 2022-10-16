@@ -41,12 +41,12 @@ public class TestBase {
 
 	/**
 	 * BeforeSuite method to clean up the test-results directory and initialize the
-	 * extent reporter
+	 * extent reporter, logger and read test properties
 	 * 
 	 * @throws Exception
 	 */
 	@BeforeSuite
-	public void initializeReporter() throws Exception {
+	public void setupBeforeTestSuite() throws Exception {
 		File file = new File("test-results");
 		if (file.exists() && !deleteDirectory(file)) {
 			throw new Exception("Exception occurred while deleting test-results directory");
@@ -62,7 +62,7 @@ public class TestBase {
 	 * extent report
 	 */
 	@AfterSuite
-	public void writeToReport() {
+	public void teardownAfterTestSuite() {
 		try {
 			softAssert.assertAll();
 			reporter.flush();
