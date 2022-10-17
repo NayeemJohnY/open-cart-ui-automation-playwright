@@ -37,6 +37,12 @@ runs:
       shell: bash
       run: SELENIUM_REMOTE_URL=${{inputs.selenium-grid-url}} mvn test --file pom.xml -Dbrowser=${{inputs.browser}} -Dheadless=${{inputs.headless}} -DenableRecordVideo=${{inputs.enableRecordVideo}} -DenableTracing=${{inputs.enableRecordVideo}} -Dtest=${{inputs.tests}}
 
+
+    - name: Build Javadocs
+      shell: bash
+      run: mvn javadoc:javadoc
+      if: always()
+
     - name: Publish Artifacts
       uses: actions/upload-artifact@v3
       if: always()

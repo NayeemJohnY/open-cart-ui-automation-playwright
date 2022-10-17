@@ -18,13 +18,24 @@ import com.microsoft.playwright.Tracing;
 
 import utils.TestProperties;
 
+/**
+ * The class PlaywrightFactory provides a constructor which starts the
+ * playwright server.
+ * It has private and public methods to create a playwright page.
+ * 
+ * @author Nayeem John
+ */
 public class PlaywrightFactory {
 
     private static Logger log = LogManager.getLogger();
-
     private Playwright playwright;
     private TestProperties testProperties;
 
+    /**
+     * Constructor to initialize the test properties and playwright server
+     * 
+     * @param testProperties - {@link TestProperties}
+     */
     public PlaywrightFactory(TestProperties testProperties) {
         this.testProperties = testProperties;
         playwright = Playwright.create();
@@ -34,7 +45,7 @@ public class PlaywrightFactory {
      * Method is to get playwright {@link Browser} instance of browser property in
      * config file with headless mode property
      * 
-     * @return Browser - Returns playwright {@link Browser} instance
+     * @return Browser - Returns playwright {@link String} instance
      * @throws IllegalArgumentException - Throws Exception when no matching browser
      *                                  is available for property
      */
@@ -129,7 +140,7 @@ public class PlaywrightFactory {
      * Method to save the session state from the {@link BrowserContext} in a file
      * provided in 'sessionState' property
      * 
-     * @param page - playwright {@link Page} instance
+     * @param page     - playwright {@link Page} instance
      * @param filename - {@link String} name of the file to store session state
      */
     public static void saveSessionState(Page page, String filename) {

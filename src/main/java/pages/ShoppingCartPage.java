@@ -9,6 +9,11 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.microsoft.playwright.Page;
 
+/**
+ * Page Object Class for shopping cart Page
+ * 
+ * @author Nayeem John
+ */
 public class ShoppingCartPage {
 
     private Page page;
@@ -18,6 +23,13 @@ public class ShoppingCartPage {
     private String login = "//input[@value='Login']";
     private String billingAddress = "//a[@href='#collapse-payment-address']";
 
+    /**
+     * Constructor to initialize the page objects with the {@link Page} instance and
+     * {@link ExtentTest} instance
+     * 
+     * @param page       - {@link Page}
+     * @param extentTest - {@link ExtentTest}
+     */
     public ShoppingCartPage(Page page, ExtentTest extentTest) {
         this.page = page;
         this.extentTest = extentTest;

@@ -11,6 +11,10 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+/**
+ * Extent Report class for the Report generation
+ * @author Nayeem John
+ */
 public class ExtentReporter {
 
     private static Logger log = LogManager.getLogger();
@@ -22,6 +26,7 @@ public class ExtentReporter {
     /**
      * Method to configure and get the ExtentReporter instance
      * 
+     * @param testProperties - {@link TestProperties}
      * @return ExtentReports - Returns {@link ExtentReports} instance
      * @throws IOException - Throws {@link IOException}
      */

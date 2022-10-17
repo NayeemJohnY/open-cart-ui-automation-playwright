@@ -7,6 +7,10 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Class to load, get, set and update the test properties
+ * @author Nayeem John
+ */
 public class TestProperties {
 
     private Logger log = LogManager.getLogger();

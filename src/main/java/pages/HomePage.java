@@ -9,6 +9,11 @@ import com.aventstack.extentreports.Status;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
+/**
+ * Page Object Class for Home Page
+ * 
+ * @author Nayeem John
+ */
 public class HomePage {
 
 	private Page page;
@@ -27,6 +32,13 @@ public class HomePage {
 	private String shoppingCartIcon = "div#cart";
 	private String viewCartLink = "text='View Cart'";
 
+	/**
+	 * Constructor to initialize the page objects with the {@link Page} instance and
+	 * {@link ExtentTest} instance
+	 * 
+	 * @param page       - {@link Page}
+	 * @param extentTest - {@link ExtentTest}
+	 */
 	public HomePage(Page page, ExtentTest extentTest) {
 		this.page = page;
 		this.extentTest = extentTest;

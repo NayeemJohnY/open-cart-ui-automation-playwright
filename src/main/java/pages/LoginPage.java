@@ -11,17 +11,28 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.microsoft.playwright.Page;
 
+/**
+ * Page Object Class for Login Page
+ * 
+ * @author Nayeem John
+ */
 public class LoginPage {
 
     private Page page;
     private ExtentTest extentTest;
-
     private String emailId = "//input[@id='input-email']";
     private String password = "//input[@id='input-password']";
     private String loginBtn = "//input[@value='Login']";
     private String logoutLink = "//a[@class='list-group-item'][normalize-space()='Logout']";
     private String alertErrorSelector = "div.alert";
 
+    /**
+     * Constructor to initialize the page objects with the {@link Page} instance and
+     * {@link ExtentTest} instance
+     * 
+     * @param page       - {@link Page}
+     * @param extentTest - {@link ExtentTest}
+     */
     public LoginPage(Page page, ExtentTest extentTest) {
         this.page = page;
         this.extentTest = extentTest;

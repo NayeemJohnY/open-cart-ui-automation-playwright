@@ -10,11 +10,11 @@ runs:
   using: "composite"
 
   steps:
-    - name: Prepare Test Report for Github Pages
+    - name: Prepare Javadocs and Test Report for Github Pages
       shell: bash
       run: |
-        mkdir github-page
-        scp test-results/TestExecutionReport.html github-page/index.html
+        scp -r target/site/apidocs github-pages/javadocs
+        scp test-results/TestExecutionReport.html github-pages/TestExecutionReport.html
 
     - name: Setup Github Pages
       uses: actions/configure-pages@v2
@@ -22,7 +22,7 @@ runs:
     - name: Upload Test execution Extent Report HTML to Github Pages
       uses: actions/upload-pages-artifact@v1
       with:
-        path: "github-page/"
+        path: "github-pages/"
 
     - name: Publish HTML Report to Github Pages
       id: publish

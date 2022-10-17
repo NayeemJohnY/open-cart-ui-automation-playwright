@@ -16,10 +16,13 @@ This framework built with the following:
 | CI                | **Github Actions**    |
 | Remote Execution  | **Selenium Grid**     |
 
+
+**Github page with javadoc & Test Execution Report can be found [here](https://nayeemjohny.github.io/open-cart-ui-automation-playwright/)**
+
+
 #
 ## Key Notes
 
-#
 ### Framework Design
 - [PlaywrightFactory](./src/main/java/base/PlaywrightFactory.java) - Base class to create the playwright objects (Page, BrowserContext, Browser, Playwright)
   - Use the Test configuration to set up the browser and playwright Browser context with tracing, video recording, SessionState, View Port 
@@ -31,6 +34,7 @@ This framework built with the following:
   - Shopping Cart page - Cart page objects and  checkout functionality method
 - The script can take screenshots of specific step and can save the SessionState using playwright feature.
 - Tried to reduce the static variables as much as possible. Only the methods, variables can be shared across all tests are created with static
+
 #
 ### Test Design
 - Each test in the [tests package](./src/test/java/tests/) is independent and complete.
@@ -99,15 +103,15 @@ By default, the test will be executed on Ubuntu runner with headless mode.
 * [docker-compose file](./selenium-grid-docker-compose.yml) to start the selenium grid with hub and node. It will pull latest images of hub, browsers, chrome, chromium, firefox and edge. Start the containers using docker-compose command and while triggering the test specify the grid node url in order the scripts to run on browsers with headed mode.
 
 #
-**Note:** This framework not covered entire  playwright features. It covers only few features like Browser context options ( tracing , recording , session storage and view port) and elements handle methods (click(), fill() and waitFor())
+**Note:** This framework not covered entire  playwright features. It covers only few features like Browser context options ( tracing, recording, session storage and view port) and elements handle methods (click(), fill() and waitFor())
 
 # 
-<footer style="float:right; width: 20%;" >
+<p style="float:right; width: 20%;" >
 Prepared by
 <a href= "https://www.linkedin.com/in/nayeemjohny/">
 Nayeem John
 </a>
-</footer>
+</p>
 
 
  
