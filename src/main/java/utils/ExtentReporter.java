@@ -5,6 +5,8 @@ import java.nio.file.Paths;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -16,8 +18,6 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
  * @author Nayeem John
  */
 public class ExtentReporter {
-
-    private static Logger log = LogManager.getLogger();
 
     private ExtentReporter() {
         throw new IllegalStateException("Extent Reporter class instantiation is not allowed");
@@ -92,21 +92,23 @@ public class ExtentReporter {
      */
     private static void log(Status status, String message) {
         message = message.replaceAll("\\<.*?\\>", "");
+        Logger log = LogManager.getLogger(Thread.currentThread().getStackTrace()[3].getClassName().split("\\.")[1]+ "." + Thread.currentThread().getStackTrace()[3].getMethodName());
+        Marker marker = MarkerManager.getMarker("ReportLog");
         switch (status) {
             case FAIL:
-                log.error(message);
+                log.warn(marker, message);
                 break;
             case WARNING:
-                log.warn(message);
+                log.warn(marker, message);
                 break;
             case SKIP:
-                log.warn(message);
+                log.warn(marker, message);
                 break;
             case INFO:
-                log.info(message);
+                log.info(marker, message);
                 break;
             default:
-                log.debug(message);
+                log.debug(marker, message);
                 break;
         }
     }

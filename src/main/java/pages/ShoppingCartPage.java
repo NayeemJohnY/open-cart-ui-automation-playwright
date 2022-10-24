@@ -45,7 +45,7 @@ public class ShoppingCartPage {
     public boolean checkProductInCart(List<String> products) {
         for (String product : products) {
             String productInCartSelector = "//div[@id='content']//a[text()='" + product + "']";
-            if (!page.waitForSelector(productInCartSelector).isVisible()) {
+            if (!page.locator(productInCartSelector).isVisible()) {
                 extentLogWithScreenshot(extentTest, Status.FAIL,
                         "The '" + product + "' Product is not available to the cart", takeScreenshot(page));
                 return false;

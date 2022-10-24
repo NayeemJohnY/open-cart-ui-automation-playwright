@@ -44,6 +44,7 @@ public class LoginPage {
      * @return String - Returns page title
      */
     public String getLoginPageTitle() {
+        page.waitForLoadState();
         return page.title();
     }
 

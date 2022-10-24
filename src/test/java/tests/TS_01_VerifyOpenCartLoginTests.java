@@ -8,6 +8,9 @@ import org.testng.annotations.Test;
 
 import pages.HomePage;
 
+/**
+ * TestNG Test class - Login Functionality
+ */
 public class TS_01_VerifyOpenCartLoginTests extends TestBase {
 
 	/**

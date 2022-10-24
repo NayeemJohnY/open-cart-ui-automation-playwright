@@ -17,4 +17,9 @@
 			<class name="tests.TS_03_VerifyCheckoutCartTests" />
 		</classes>
 	</test>
+	<test name="Open Cart - Product Page Validation Test">
+		<classes>
+			<class name="tests.TS_04_VerifyProductsPageTest" />
+		</classes>
+	</test>
 </suite>
