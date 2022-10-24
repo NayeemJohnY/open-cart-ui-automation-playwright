@@ -6,6 +6,9 @@ import org.testng.annotations.Test;
 
 import pages.HomePage;
 
+/**
+ * TestNG Test class - Add Product to Cart
+ */
 public class TS_02_VerifyAddProductToCartTests extends TestBase {
 
 	/**

@@ -3,17 +3,22 @@
 	<Properties>
 		<Property name="filename">test-results/logs/opencart-ui-automation.log</Property>
 		<Property name="pattern">%style{[%date{yyyy-MMM-dd HH:mm:ss.SSS zzz}]}{yellow} %style{[Thread ID: %tid]}{white} %style{[%5class{1}.%method]}{bright_blue} %highlight{[%level]} %msg%n%throwable</Property>
+		<Property name="reportLogPattern">%style{[%date{yyyy-MMM-dd HH:mm:ss.SSS zzz}]}{yellow} %style{[Thread ID: %tid]}{white} %style{[%logger]}{bright_blue} %highlight{[%level]} %msg%n%throwable</Property>
 	</Properties>
 	<ThresholdFilter level="DEBUG" />
 	<Appenders>
 		<Console name="STDOUT">
 			<PatternLayout disableAnsi="false">
-				<pattern>${pattern}</pattern>
+				<MarkerPatternSelector defaultPattern="${pattern}">
+					<PatternMatch key="ReportLog" pattern="${reportLogPattern}"></PatternMatch>
+				</MarkerPatternSelector>
 			</PatternLayout>
 		</Console>
 		<File name="File" fileName="${filename}" append="false">
 			<PatternLayout disableAnsi="false">
-				<pattern>${pattern}</pattern>
+				<MarkerPatternSelector defaultPattern="${pattern}">
+					<PatternMatch key="ReportLog" pattern="${reportLogPattern}"></PatternMatch>
+				</MarkerPatternSelector>
 			</PatternLayout>
 		</File>
 	</Appenders>

@@ -11,6 +11,9 @@ import base.PlaywrightFactory;
 import pages.HomePage;
 import pages.ShoppingCartPage;
 
+/**
+ * TestNG Test class - Checkout cart
+ */
 public class TS_03_VerifyCheckoutCartTests extends TestBase {
 
 	private ShoppingCartPage shoppingCartPage;

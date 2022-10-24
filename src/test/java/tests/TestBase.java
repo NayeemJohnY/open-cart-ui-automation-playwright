@@ -27,6 +27,9 @@ import pages.LoginPage;
 import utils.ExtentReporter;
 import utils.TestProperties;
 
+/**
+ * Base Class for the TestNG test
+ */
 public class TestBase {
 
 	protected Page page;
@@ -90,17 +93,18 @@ public class TestBase {
 	 */
 	@AfterMethod
 	public void closePage(ITestResult result) {
-		String methodName = result.getMethod().getMethodName();
+		String testName = testNode.getModel().getName().replaceAll("[^A-Za-z0-9_\\-\\.\\s]", "");
 		if (Boolean.parseBoolean(testProperties.getProperty("enableTracing"))) {
 			String fileName = testProperties.getProperty("tracingDirectory") + "Trace_"
-					+ methodName + ".zip";
+					+ testName + ".zip";
 			page.context().tracing().stop(new Tracing.StopOptions()
 					.setPath(Paths.get(fileName)));
 		}
-		if (result.getStatus() != ITestResult.SUCCESS)
-			extentLogWithScreenshot(extentTest, Status.WARNING, "Screenshots for the test failed : " + methodName,
+		if (!result.isSuccess())
+			extentLogWithScreenshot(testNode, Status.WARNING, "The test is not Passed. Please refer the previous step.",
 					takeScreenshot(page));
 		page.context().browser().close();
+		reporter.flush();
 	}
 
 	/**

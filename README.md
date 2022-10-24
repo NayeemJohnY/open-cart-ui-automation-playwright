@@ -17,7 +17,7 @@ This framework built with the following:
 | Remote Execution  | **Selenium Grid**     |
 
 
-**Github page with javadoc & Test Execution Report can be found [here](https://nayeemjohny.github.io/open-cart-ui-automation-playwright/)**
+**Github page with javadoc and Test Execution Report can be found [here](https://nayeemjohny.github.io/open-cart-ui-automation-playwright/)**
 
 
 #
@@ -34,6 +34,7 @@ This framework built with the following:
   - Shopping Cart page - Cart page objects and  checkout functionality method
 - The script can take screenshots of specific step and can save the SessionState using playwright feature.
 - Tried to reduce the static variables as much as possible. Only the methods, variables can be shared across all tests are created with static
+- Code has been analyzed for code smell, code duplication and best practices using **SonarLint** on fly as well as **SonarCloud**
 
 #
 ### Test Design
@@ -89,7 +90,7 @@ By default, the test will be executed on Ubuntu runner with headless mode.
 
 -  [Main workflow file](./.github/workflows/open-cart-functional-test.yml) checkout the repository to runner host and uses the actions for maven test execution and GitHub page publish..
 
-- [Run Maven Test](./.github/java-maven-testng-test-action/action.yml) action configure the Java & Maven in the runner host and then execute the test and prepare the test-results to be uploaded as artifact.
+- [Run Maven Test](./.github/java-maven-testng-test-action/action.yml) action configure the Java and Maven in the runner host and then execute the test and prepare the test-results to be uploaded as artifact.
 
 - [Publish Report to Github Page ](./.github/publish-github-page-action/action.yml) action prepare the test report for publish, configure the github page and publish the report to the github page.
 
@@ -103,15 +104,15 @@ By default, the test will be executed on Ubuntu runner with headless mode.
 * [docker-compose file](./selenium-grid-docker-compose.yml) to start the selenium grid with hub and node. It will pull latest images of hub, browsers, chrome, chromium, firefox and edge. Start the containers using docker-compose command and while triggering the test specify the grid node url in order the scripts to run on browsers with headed mode.
 
 #
-**Note:** This framework not covered entire  playwright features. It covers only few features like Browser context options ( tracing, recording, session storage and view port) and elements handle methods (click(), fill() and waitFor())
+Please find the changelog for the latest updates [changelog](./changelog.md)
 
 # 
-<p style="float:right; width: 20%;" >
+<span style="float:right;" >
 Prepared by
 <a href= "https://www.linkedin.com/in/nayeemjohny/">
 Nayeem John
 </a>
-</p>
+</span>
 
 
  

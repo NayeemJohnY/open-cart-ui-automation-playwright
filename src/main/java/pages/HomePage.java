@@ -31,6 +31,9 @@ public class HomePage {
 	private String shoppingCartLink = "//a[contains(text(), 'shopping cart')]";
 	private String shoppingCartIcon = "div#cart";
 	private String viewCartLink = "text='View Cart'";
+	private String menuBarId = "#menu";
+	private String seeAllClass = ".see-all";
+	private String productHeaderCss = "#content h2";
 
 	/**
 	 * Constructor to initialize the page objects with the {@link Page} instance and
@@ -50,6 +53,7 @@ public class HomePage {
 	 * @return String - Returns page title
 	 */
 	public String getHomePageTitle() {
+		page.waitForLoadState();
 		return page.title();
 	}
 
@@ -83,8 +87,7 @@ public class HomePage {
 		Locator productLocator = page.locator(productSearchResult).nth(0);
 		productLocator.locator(addToCartSelector).click();
 		String product = productLocator.locator(productCaption).textContent();
-		if (page.locator(alertSelector).textContent()
-				.contains("You have added " + product + " to your shopping cart!")) {
+		if (page.textContent(alertSelector).contains("You have added " + product + " to your shopping cart!")) {
 			extentLogWithScreenshot(extentTest, Status.PASS, "The '" + product + "' product is added to the cart.",
 					takeScreenshot(page));
 			return product;
@@ -117,5 +120,29 @@ public class HomePage {
 			page.click(viewCartLink);
 		}
 		return new ShoppingCartPage(page, extentTest);
+	}
+
+	/**
+	 * Method to navigate to specific products menu from Homepage
+	 * 
+	 * @param productOption - {@link String}
+	 * @return ProductPage - Returns {@link ProductPage} instance
+	 */
+	public ProductPage navigateToProductsFromMenu(String productOption) {
+		Locator productMenu = page.locator(menuBarId).locator("li",
+				new Locator.LocatorOptions().setHas(page.locator("text='" + productOption + "'")));
+		productMenu.hover();
+		productMenu.locator(seeAllClass).click();
+		String productTitle = page.textContent(productHeaderCss);
+		if (productTitle.equals(productOption)) {
+			extentLog(extentTest, Status.PASS, "Navigated to product page from navigation menu");
+			return new ProductPage(page, extentTest);
+		} else {
+			String message = "Incorrect Landing Page - <br/>Expected product page: " + productOption
+					+ " Actual product page: " + productTitle;
+			extentLogWithScreenshot(extentTest, Status.FAIL, message, takeScreenshot(page));
+			throw new IllegalStateException(message);
+		}
+
 	}
 }
