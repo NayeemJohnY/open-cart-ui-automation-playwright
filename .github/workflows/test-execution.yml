@@ -13,4 +13,6 @@ jobs:
     - name: Checkout the repository source code
       uses: actions/checkout@v3
     - name: Run Tests
-      run: docker compose -f test-service-docker-compose.yml
+      run: |
+        docker compose -f test-service-docker-compose.yml
+        docker compose logs -f
