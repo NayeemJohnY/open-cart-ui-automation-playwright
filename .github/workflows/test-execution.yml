@@ -13,7 +13,7 @@ jobs:
     - name: Checkout the repository source code
       uses: actions/checkout@v3
     - name: Start containers
-      run: docker-compose -f "test-service-docker-compose.yml" up -d --build --verbose
+      run: docker-compose -f docker-compose.yml up -d --build --verbose
     - name: Check running containers
       run: docker ps -a
     - name: Check logs
@@ -22,5 +22,5 @@ jobs:
         docker logs selenium-hub
     - name: Stop containers
       if: always()
-      run: docker-compose -f "test-service-docker-compose.yml" down
+      run: docker-compose -f docker-compose.yml down
       
