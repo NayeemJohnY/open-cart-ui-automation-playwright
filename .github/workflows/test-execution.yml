@@ -6,15 +6,15 @@ on:
 jobs:
 
   build:
-
+    timeout-minutes: 5
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout the repository source code
       uses: actions/checkout@v3
-    - name: Run Tests
-      run: |
-        docker-compose up -d -f test-service-docker-compose.yml
-        docker-compose logs
-        docker-compose down
+    - name: Start containers
+      run: docker-compose -f "test-service-docker-compose.yml" up -d --build --verbose
+    - name: Stop containers
+      if: always()
+      run: docker-compose -f "test-service-docker-compose.yml" down
       
