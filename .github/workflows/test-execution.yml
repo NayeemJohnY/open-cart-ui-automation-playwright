@@ -1,0 +1,16 @@
+name: Test Execution - Docker Compose
+
+on:
+  push:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository source code
+      uses: actions/checkout@v3
+    - name: Run Tests
+      run: docker compose up -f test-service-docker-compose.yml
