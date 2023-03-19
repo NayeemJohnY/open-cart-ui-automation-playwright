@@ -5,4 +5,5 @@ services:
       file: selenium-grid-docker-compose.yml
       service: selenium-hub
   run-maven-test:
+  container_name: test-container
       build: . 
