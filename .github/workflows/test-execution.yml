@@ -14,10 +14,10 @@ jobs:
       uses: actions/checkout@v3
     - name: Run Tests
       run: |
-        docker compose -f test-service-docker-compose.yml
+        docker compose run -f test-service-docker-compose.yml
     - name: View Docker logs
       run: |
-        docker compose logs -f
+        docker compose logs
     - name: Compose down
       run: |
         docker compose down
