@@ -15,4 +15,10 @@ jobs:
     - name: Run Tests
       run: |
         docker compose -f test-service-docker-compose.yml
+    - name: View Docker logs
+      run: |
         docker compose logs -f
+    - name: Compose down
+      run: |
+        docker compose down
+      
