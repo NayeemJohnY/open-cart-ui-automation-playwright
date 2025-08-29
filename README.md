@@ -1,6 +1,6 @@
 # Functional UI Automation Framework - Open Cart Website
 
-This UI Automation framework repository has some basic functional tests for [Open Cart UI Website](https://https://naveenautomationlabs.com/opencart/). It covers the login, add products to cart and checkout cart functionality. The reports of test execution published in [Github Page](https://nayeemjohny.github.io/open-cart-ui-automation-playwright/) when the tests are executed from Github Actions.
+This UI Automation framework repository has some basic functional tests for [Open Cart UI Website](https://naveenautomationlabs.com/opencart/). It covers the login, add products to cart and checkout cart functionality. The reports of test execution published in [Github Page](https://nayeemjohny.github.io/open-cart-ui-automation-playwright/) when the tests are executed from Github Actions.
 
 This framework built with the following:
 
